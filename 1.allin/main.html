@@ -5,42 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML内で全て完結</title>
     <style>
-        /* CSSで工夫した文字列 */
+        /* 共通スタイル */
         .styled-text {
-            font-size: 20px;
-            color: blue;
-            text-shadow: 2px 2px 5px gray;
+            font-size: 24px;
             font-weight: bold;
-        }
-        
-        /* 表のスタイル */
-        table {
-            width: 50%;
-            border-collapse: collapse;
+            display: inline-block;
             margin-top: 20px;
         }
 
-        th, td {
-            border: 1px solid black;
+        /* 1. グラデーション＋アニメーション */
+        .gradient-text {
+            background: linear-gradient(45deg, #ff7eb3, #ff758c, #ff7eb3);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradientAnimation 3s infinite alternate;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: left; }
+            100% { background-position: right; }
+        }
+
+        /* 2. ネオンライト */
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 5px #ff0, 0 0 10px #ff0, 0 0 15px #ff0, 0 0 20px #ff9900;
+            background-color: black;
             padding: 10px;
-            text-align: center;
+            border-radius: 10px;
         }
 
-        th {
-            background-color: lightgray;
+        /* 3. タイプライター */
+        .typewriter-text {
+            font-family: "Courier New", monospace;
+            border-right: 2px solid black;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 2s steps(15, end) forwards, blink 0.8s infinite;
         }
 
-        /* JavaScriptで追加する要素のスタイル */
-        #result {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
         }
 
-        #time {
-            margin-top: 10px;
-            font-size: 16px;
-            color: green;
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* 4. 浮遊エフェクト */
+        .floating-text {
+            color: #3498db;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .floating-text:hover {
+            transform: translateY(-10px);
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 5. カラフルなレインボーテキスト */
+        .rainbow-text {
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: rainbow 3s infinite linear;
+        }
+
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
         }
     </style>
 </head>
@@ -50,11 +86,18 @@
     <!-- 1. ただの文字列 -->
     <p>これはHTMLにただ文字を入れているよ。</p>
 
-    <!-- 2. CSSで工夫した文字列 -->
-    <p class="styled-text">これはCSSで工夫しているよ。</p>
+    <!-- 2. CSSで工夫した文字列（切り替え式） -->
+    <p id="styledText" class="styled-text gradient-text">これはCSSで工夫しているよ。</p>
+
+    <br>
+    <button onclick="changeStyle('gradient-text')">グラデーション</button>
+    <button onclick="changeStyle('neon-text')">ネオン</button>
+    <button onclick="changeStyle('typewriter-text')">タイプライター</button>
+    <button onclick="changeStyle('floating-text')">浮遊</button>
+    <button onclick="changeStyle('rainbow-text')">レインボー</button>
 
     <!-- 3. 表 -->
-    <table>
+    <table border="1">
         <tr>
             <th>名前</th>
             <th>年齢</th>
@@ -102,6 +145,14 @@
                     timeElement.innerText = "時刻情報を取得できませんでした。";
                 });
         }
+
+        function changeStyle(styleClass) {
+            const textElement = document.getElementById("styledText");
+
+            // すべてのスタイルをリセット
+            textElement.className = "styled-text " + styleClass;
+        }
     </script>
 </body>
 </html>
+

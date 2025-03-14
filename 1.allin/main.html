@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML内で全て完結</title>
+    <style>
+        /* CSSで工夫した文字列 */
+        .styled-text {
+            font-size: 20px;
+            color: blue;
+            text-shadow: 2px 2px 5px gray;
+            font-weight: bold;
+        }
+        
+        /* 表のスタイル */
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+
+        /* JavaScriptで追加する要素のスタイル */
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #time {
+            margin-top: 10px;
+            font-size: 16px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2>HTML内で完結したデモ</h2>
+
+    <!-- 1. ただの文字列 -->
+    <p>これはHTMLにただ文字を入れているよ。</p>
+
+    <!-- 2. CSSで工夫した文字列 -->
+    <p class="styled-text">これはCSSで工夫しているよ。</p>
+
+    <!-- 3. 表 -->
+    <table>
+        <tr>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>職業</th>
+        </tr>
+        <tr>
+            <td>田中</td>
+            <td>25</td>
+            <td>エンジニア</td>
+        </tr>
+        <tr>
+            <td>佐藤</td>
+            <td>30</td>
+            <td>デザイナー</td>
+        </tr>
+    </table>
+
+    <!-- 4. 画像 -->
+    <img src="https://via.placeholder.com/300" alt="サンプル画像" width="300">
+
+    <!-- 5. JavaScriptを使用した要素 -->
+    <button onclick="showMessage()">ボタンを押す</button>
+    <p id="result"></p>
+
+    <button onclick="getTime()">東京の現在時刻を表示</button>
+    <p id="time"></p>
+
+    <script>
+        function showMessage() {
+            document.getElementById("result").innerText = "これはJavaScriptで出来ているよ";
+        }
+
+        function getTime() {
+            const timeElement = document.getElementById("time");
+
+            // 世界時計APIを使用（APIキー不要）
+            fetch("http://worldtimeapi.org/api/timezone/Asia/Tokyo")
+                .then(response => response.json())
+                .then(data => {
+                    const dateTime = new Date(data.datetime);
+                    const formattedTime = dateTime.toLocaleString("ja-JP");
+                    timeElement.innerText = `東京の現在時刻: ${formattedTime}`;
+                })
+                .catch(error => {
+                    timeElement.innerText = "時刻情報を取得できませんでした。";
+                });
+        }
+    </script>
+</body>
+</html>

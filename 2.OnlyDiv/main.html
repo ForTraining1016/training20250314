@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>モダンでインパクトのあるCSS表現</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>モダンでインパクトのあるCSS表現</h2>
+
+    <p class="futuristic">これはCSSで工夫しているよ。（futuristic）</p>
+    <p class="liquid">これはCSSで工夫しているよ。（liquid）</p>
+    <p class="blurred">これはCSSで工夫しているよ。（blurred）</p>
+    <p class="typing">これはCSSで工夫しているよ。（typing）</p>
+    <p class="distorted">これはCSSで工夫しているよ。（distorted）</p>
+
+    <img src="https://picsum.photos/300/200" alt="ランダム画像">
+
+    <div class="toggle-container">
+        <span>CSSで工夫しているよ。</span>
+        <label class="switch">
+            <input type="checkbox" id="toggleSwitch">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <p id="toggleText" style="display: none;">これはCSSで工夫しているよ。（トグルスイッチ）</p>
+
+    <button class="button" onclick="startLoading()">🚀 JavaScript起動</button>
+    <button class="button" onclick="getTime()">🕒 東京の現在時刻</button>
+    <p id="time"></p>
+
+    <!-- ポップアップ -->
+    <div id="popup-overlay" class="popup-overlay">
+        <div class="popup" id="popup">
+            <span class="close-btn" onclick="closePopup()">×</span>
+            <div class="spinner"></div>
+            <p id="popup-text">JavaScriptが起動しました！</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

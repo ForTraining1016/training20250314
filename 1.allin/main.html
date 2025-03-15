@@ -14,8 +14,9 @@
             padding: 50px;
         }
 
-        /* フューチャリスティック */
-        .futuristic {
+
+         /* 1. フューチャリスティック */
+         .futuristic {
             font-size: 32px;
             font-weight: bold;
             text-transform: uppercase;
@@ -28,6 +29,71 @@
             0% { text-shadow: 0 0 5px rgba(0, 123, 255, 0.3); }
             100% { text-shadow: 0 0 20px rgba(0, 123, 255, 0.7); }
         }
+
+        /* 2. リキッドエフェクト */
+        .liquid {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff6f61, #ff9966);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: liquidMove 3s infinite ease-in-out;
+        }
+
+        @keyframes liquidMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 3. グラデーションブラー */
+        .blurred {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff9a8b, #ff6f61, #ffcb8e);
+            padding: 10px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(255, 100, 100, 0.3);
+            color: white;
+        }
+
+        /* 4. タイピングアニメーション */
+        .typing {
+            font-size: 32px;
+            font-weight: bold;
+            border-right: 4px solid #333;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            display: inline-block;
+            animation: typing 3s steps(20, end) infinite alternate, blink 0.6s infinite;
+        }
+
+        @keyframes typing {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* 5. ディストーション */
+        .distorted {
+            font-size: 32px;
+            font-weight: bold;
+            color: #d32f2f;
+            text-shadow: 2px 2px 0 #00796b, -2px -2px 0 #536dfe;
+            animation: distort 0.1s infinite alternate;
+        }
+
+        @keyframes distort {
+            0% { transform: skewX(5deg); }
+            100% { transform: skewX(-5deg); }
+        }
+
 
         /* トグルスイッチ */
         .toggle-container {
@@ -164,7 +230,11 @@
 <body>
     <h2>モダンでインパクトのあるCSS表現</h2>
 
-    <p class="futuristic">これはCSSで工夫しているよ。（未来的な光）</p>
+    <p class="futuristic">これはCSSで工夫しているよ。（futuristic）</p>
+    <p class="liquid">これはCSSで工夫しているよ。（liquid）</p>
+    <p class="blurred">これはCSSで工夫しているよ。（blurred）</p>
+    <p class="typing">これはCSSで工夫しているよ。（typing）</p>
+    <p class="distorted">これはCSSで工夫しているよ。（distorted）</p>
 
     <img src="https://picsum.photos/300/200" alt="ランダム画像">
 
@@ -223,7 +293,7 @@
         }
 
         function getTime() {
-            document.getElementById("time").innerText = 現在時刻: ${new Date().toLocaleString("ja-JP")};
+            document.getElementById("time").innerText = `現在時刻: ${new Date().toLocaleString("ja-JP")}`;
         }
     </script>
 </body>
